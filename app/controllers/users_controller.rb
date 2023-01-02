@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    #POST request for user signup create action
     def create
         user = User.create(user_params)
         if user.valid?
