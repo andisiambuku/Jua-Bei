@@ -1,24 +1,58 @@
-# README
+# Jua Bei API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Jua Bei is an API that allows users to search for prices of different prooducts and recieve prices from different ecommerce ites to then compare and make informed buying decisions.
 
-Things you may want to cover:
+## Run Locally
 
-* Ruby version
+Clone the project
 
-* System dependencies
+```bash
+  git clone https://github.com/andisiambuku/Jua-Bei-API.git
+```  
 
-* Configuration
+```bash
+  bundle install
+```
 
-* Database creation
+```bash
+  rails db:create
+```
 
-* Database initialization
+```bash
+  rails db:migrate db:seed
+```
 
-* How to run the test suite
+```bash
+  rails s
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## API Reference
 
-* Deployment instructions
+*coming soon*
 
-* ...
+## Authors
+
+- [@andisiambuku](https://github.com/andisiambuku)
+
+## Contributing
+
+Contributions are always welcome!
+
+Fork > Contribute your idea > Create a Pull Request > Improve the project
+
+## Tech Stack
+
+**Client:** React
+
+**Server:** Ruby on Rails, PostgreSQL
+
+## Related
+
+Here are some related projects
+
+[Jua Bei Front-end](*coming soon*)
+
+## Deployment
+
+The link to the deployed backend:
+*comming soon*
