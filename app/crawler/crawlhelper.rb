@@ -28,7 +28,7 @@ module CrawlHelp
     end
 
     #method to calculate the price index of a product
-    def price_index(index,price)
-        (2*index) + price /10
+    def price_index(index, price)
+        (2 * index) + price / 10
     end
 end
