@@ -11,9 +11,9 @@ gem "pg", "~> 1.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
-
+# gem for serialzition
 gem "active_model_serializers"
-
+#gem for has secure password in user model for authentication
 gem "bcrypt"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -32,5 +32,17 @@ group :development do
   # gem "spring"
 end
 
-
+# gem for token based authentication of users
 gem "jwt", "~> 2.6"
+
+# gems for scraping
+# gem is a client library for making requests from ruby
+gem 'http'
+# gem is for ssl and tls cryptography
+gem 'openssl'
+# gem is for handling source uris
+gem 'uri'
+# gem is for building http user agents
+gem "net-http"
+# gem is a ruby web server that encompases a parser, web server interface and network library
+gem 'thin'
