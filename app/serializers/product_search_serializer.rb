@@ -1,3 +1,3 @@
 class ProductSearchSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :search_term
 end
