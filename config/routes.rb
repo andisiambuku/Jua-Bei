@@ -12,8 +12,6 @@ Rails.application.routes.draw do
   #product search endpoint
   post '/search', to: 'product_searches#create'
   
-  #product search list endpoint
-  get '/searches', to: 'product_searches#index'
 
   #user search history endpoint
   get'/history', to: 'product_searches#history'
