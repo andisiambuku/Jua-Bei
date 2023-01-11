@@ -10,13 +10,13 @@ Rails.application.routes.draw do
   get '/profile', to: 'users#profile'
 
   #product search endpoint
-  post '/search', to: 'searches#create'
+  post '/search', to: 'product_searches#create'
   
   #product search list endpoint
-  get '/searches', to: 'searches#index'
+  get '/searches', to: 'product_searches#index'
 
   #user search history endpoint
-  get'/history', to: 'searches#history'
+  get'/history', to: 'product_searches#history'
 
   # Defines the root path route ("/")
   # root "articles#index"
