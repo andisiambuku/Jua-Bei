@@ -1,5 +1,5 @@
 class ProductSearchesController < ApplicationController
-    before_action :authorize, only: [:history]
+    skip_before_action :authorized, only: [:history,:create]
 
     # method to create a search and get a result 
     def create
@@ -14,10 +14,8 @@ class ProductSearchesController < ApplicationController
         end
 
         search ||= ProductSearch.create(search_term: title)
-        UserSearch.create(user_id: current_user.id, search_id: search.id) if logged_in?
+         UserSearch.create(user_id: current_user.id, search_id: search.id) if logged_in?
         render json: search.products, status: :ok
-
-
 
     end
 
