@@ -4,6 +4,8 @@ class ProductSearch < ApplicationRecord
 
     validates :search_term, presence: true
 
+    after_create :scraper
+
     #crawler module
     def scraper
         s = Scraper.new(search_term,id)
