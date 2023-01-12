@@ -8,7 +8,7 @@ class ProductSearchesController < ApplicationController
 
         if search && search.product.length.zero?
             search.update(count: 1)
-            search.crawl
+            search.scraper
         elsif search
             search.update(count: search.count + 1 )
         end
