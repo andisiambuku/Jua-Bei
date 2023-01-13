@@ -6,7 +6,7 @@ class ProductSearchesController < ApplicationController
         title = params[:search_term]
         search = ProductSearch.find_by(search_term: title)
 
-        if search && search.product.length.zero?
+        if search && search.products.length.zero?
             search.update(count: 1)
             search.scraper
         elsif search
@@ -15,7 +15,7 @@ class ProductSearchesController < ApplicationController
 
         search ||= ProductSearch.create(search_term: title)
          UserSearch.create(user_id: current_user.id, search_id: search.id) if logged_in?
-        render json: search.product, status: :ok
+        render json: search.products, status: :ok
 
     end
 
