@@ -10,8 +10,10 @@ class UsersController < ApplicationController
             render json: { error: 'failed to create user' }, status: :unprocessable_entity
         end
     end
+    
     def profile
-        render json: @user, status: :accepted
+        render json: { user: UserSerializer.new(current_user) }, status: :accepted
+        
     end
 
     private
