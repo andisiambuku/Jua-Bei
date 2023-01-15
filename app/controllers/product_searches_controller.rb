@@ -1,5 +1,6 @@
+
 class ProductSearchesController < ApplicationController
-    skip_before_action :authorized, only: [:history,:create]
+    before_action :authorized, only: [:history]
 
     # method to create a search and get a result 
     def create
@@ -16,11 +17,13 @@ class ProductSearchesController < ApplicationController
         search ||= ProductSearch.create(search_term: title)
          UserSearch.create(user_id: current_user.id, search_id: search.id) if logged_in?
         render json: search.products, status: :ok
-
+        
+        
     end
 
     #method to get the user search history
     def history
+        
         render json: current_user.product_searches.uniq(&:search_term), status: :ok    
     end
 
@@ -28,3 +31,17 @@ class ProductSearchesController < ApplicationController
 
 
 end
+
+# def index
+#     search_term = SearchTerm.create(search_term: params[:search_term])
+#     results = []
+#     ecommerce_sites = ['site1', 'site2', 'site3', 'site4']
+#     ecommerce_sites.each do |site|
+#       url = "https://#{site}.com/api/search?q=#{search_term.search_term}"
+#       response = HTTParty.get(url)
+#       result = JSON.parse(response.body)
+#       results << {site => result}
+#     end
+#     render json: results
+#   end
+  
