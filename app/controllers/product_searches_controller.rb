@@ -5,9 +5,10 @@ class ProductSearchesController < ApplicationController
     # method to create a search and get a result 
     def create
         title = params[:search_term]
-        search = ProductSearch.find_by(search_term: title)
+        @search = ProductSearch.find_by(search_term: title)
 
-        if search && search.products.length.zero?
+        # if search && search.products.length.zero?
+        if @search && @search.products.length.zero?
             search.update(count: 1)
             search.scraper
         elsif search
@@ -23,8 +24,11 @@ class ProductSearchesController < ApplicationController
 
     #method to get the user search history
     def history
+        @search = ProductSearch.where(user_id: current_user.id)
+        render json: @search.uniq(&:search_term), status: :ok
+
+        # render json: search.product_searches.uniq(&:search_term), status: :ok   
         
-        render json: current_user.product_searches.uniq(&:search_term), status: :ok    
     end
 
 
