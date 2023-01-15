@@ -11,5 +11,6 @@ class ProductSearch < ApplicationRecord
         s = Scraper.new(search_term,id)
         s.ebay
         s.jumia
+        s.amazon
     end
 end
