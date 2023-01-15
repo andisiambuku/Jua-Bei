@@ -35,7 +35,7 @@ class ApplicationController < ActionController::API
         if logged_in?
             true
         else
-            render json: { message: 'Log in to your account'}, status: :unauthorized
+            render json: { message: 'Log in to your account'}, status: :unauthorized 
         end
     end
 end
