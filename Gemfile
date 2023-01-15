@@ -32,6 +32,8 @@ group :development do
   # gem "spring"
 end
 
+gem "byebug"
+
 # gem for token based authentication of users
 gem "jwt", "~> 2.6"
 
