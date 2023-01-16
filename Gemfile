@@ -48,3 +48,5 @@ gem 'uri'
 gem "net-http"
 # gem is a ruby web server that encompases a parser, web server interface and network library
 gem 'thin'
+
+gem 'nokogiri'

@@ -22,6 +22,7 @@ class ProductSearchesController < ApplicationController
         
     # end
     def create
+
         @searched_products = Product.search(params[:search_term])
         render json: @searched_products
     end

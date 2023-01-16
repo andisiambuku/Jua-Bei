@@ -207,6 +207,7 @@ DEPENDENCIES
   http
   jwt (~> 2.6)
   net-http
+  nokogiri
   openssl
   pg (~> 1.1)
   puma (~> 5.0)

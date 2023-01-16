@@ -20,7 +20,7 @@ class Scraper
         byebug
         http = Net::HTTP.new(url.host, url.port)
         http.use_ssl = true
-        http.verify_mode = OpenSSL::SSL::VERFIY_PEER
+        http.verify_mode = OpenSSL::SSL::VERIFY_PEER
 
         request = Net::HTTP::Get.new(url)
         data(http.request(request))
@@ -32,6 +32,7 @@ class Scraper
         parsed_page = Nokogiri::HTML(browser_html)
     end
     
+
 
     def ebay_site
         
@@ -53,6 +54,7 @@ class Scraper
     create_products(new)
     end
 
+
     def jumia_site
         articles = response(@jumia_url).xpath("//div[@class='-paxs row _no-g _4cl-3cm-shs']/article/a")
         new = articles.map.with_index do |product, index|
@@ -64,8 +66,7 @@ class Scraper
                 rating: product.xpath(".//div[@class='stars _s']/text()").to_s,
                 price_prediscount: product.xpath(".//div[@class='old']/text()").to_s,
                 discount: product.xpath(".//div[@class='bdg _dsct _sm']/text()").to_s,
-                product_search_id: @product_search_id,
-                
+
             }
         end
         create_product(new)
@@ -82,11 +83,11 @@ class Scraper
             price_before_discount: product.xpath(".//span[@class='a-price a-text-price']/span[1]/text()").to_s,
             rating: count_stars(product.xpath(".//i[@class='a-icon a-icon-star-small a-star-small-4-5 aok-align-bottom']/span/text()").to_s),
             store: 'amazon',
-            product_search_id: @product_search_id,
+
             
           }
         end
-        create_products(new)
+        create_product(new)
     end
 
     def create_product(new_product)
