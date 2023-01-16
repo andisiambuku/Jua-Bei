@@ -19,11 +19,11 @@ class Scraper
     def response(url)
         http = Net::HTTP.new(url.host, url.port)
         http.use_ssl = true
-        http.verify_mode = OpenSSL::SSL::VERFIY_PEER
+        http.verify_mode = OpenSSL::SSL::VERIFY_PEER
 
         request = Net::HTTP::Get.new(url)
         data(http.request(request))
-        byebug
+        # byebug
     end
 
     def data(resp)
@@ -32,25 +32,25 @@ class Scraper
     end
     
 
-    def ebay_site
-        
-        cards = response(@ebay_url).xpath("//div[@class='s-item__wrapper clearfix']")
-        new= cards.map.with_index do |card, index|
-      price = card.xpath(".//span[@class='s-item__price']/text()").to_s
-      {
-        image_url: card.xpath(".//img[@class='s-item__image-img']").attr('src').to_s,
-        name: card.xpath(".//span[@role='heading']/text()").to_s,
-        price: price,
-        price_prediscount: card.xpath(".//span[@class='STRIKETHROUGH']/text()").to_s,
-        discount: card.xpath(".//span[@class='BOLD']/text()").to_s,
-        ratings: '',
-        store: 'ebay',
-        search_id: @search_id,
-        
-      }
-    end
-    create_products(new)
-    end
+        def ebay_site
+            cards = response(@ebay_url).xpath("//div[@class='s-item__wrapper clearfix']")
+            new= cards.map.with_index do |card, index|
+            price = card.xpath(".//span[@class='s-item__price']/text()").to_s
+        {
+            image_url: card.xpath(".//img[@class='s-item__image-img']").attr('src').to_s,
+            name: card.xpath(".//span[@role='heading']/text()").to_s,
+            price: price,
+            price_prediscount: card.xpath(".//span[@class='STRIKETHROUGH']/text()").to_s,
+            discount: card.xpath(".//span[@class='BOLD']/text()").to_s,
+            rating: '',
+            store: 'ebay',
+            search_id: @search_id,
+             product_url: "https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2380057.m570.l1313&_nkw=#{@search}"
+            
+            }
+        end
+           create_product(new)
+        end
 
     def jumia_site
         articles = response(@jumia_url).xpath("//div[@class='-paxs row _no-g _4cl-3cm-shs']/article/a")
@@ -64,6 +64,7 @@ class Scraper
                 price_prediscount: product.xpath(".//div[@class='old']/text()").to_s,
                 discount: product.xpath(".//div[@class='bdg _dsct _sm']/text()").to_s,
                 search_id: @search_id,
+                product_url: "https://www.jumia.co.ke/catalog/?q=#{@search}"
                 
             }
         end
@@ -82,10 +83,11 @@ class Scraper
             ratings: count_stars(product.xpath(".//i[@class='a-icon a-icon-star-small a-star-small-4-5 aok-align-bottom']/span/text()").to_s),
             store: 'amazon',
             search_id: @search_id,
+            product_url:"https://www.amazon.com/s?k=#{@search}"
             
           }
         end
-        create_products(new)
+        create_product(new)
     end
 
     def create_product(new_product)

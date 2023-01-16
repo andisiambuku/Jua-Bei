@@ -5,10 +5,10 @@ class ProductSearchesController < ApplicationController
     # method to create a search and get a result 
     def create
         title = params[:search_term]
-        @search = ProductSearch.find_by(search_term: title)
+        search = ProductSearch.find_by(search_term: title)
 
         # if search && search.products.length.zero?
-        if @search && @search.products.length.zero?
+        if search && search.products.length.zero?
             search.update(count: 1)
             search.scraper
         elsif search
@@ -16,7 +16,7 @@ class ProductSearchesController < ApplicationController
         end
 
         search ||= ProductSearch.create(search_term: title)
-         UserSearch.create(user_id: current_user.id, search_id: search.id) if logged_in?
+         UserSearch.create(user_id: current_user.id, product_search_id: product_search.id) if logged_in?
         render json: search.products, status: :ok
         
         
