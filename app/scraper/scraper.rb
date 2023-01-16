@@ -5,25 +5,26 @@ require 'uri'
 
 class Scraper 
 
-    def initialize(search,search_id)
+    def initialize(product_search,product_search_id)
         key = "7pNsEoE6c89LBweXVE6s3F24ngpgZQCH"
         @amazon_url = URI("https://api.webscrapingapi.com/v1?url=https%3a%2f%2fwww.amazon.com%2fs%3fk%3d#{search}&api_key=#{key}&render_js=1&wait_until=domcontentloaded")
         @jumia_url = URI("https://api.webscrapingapi.com/v1?url=https%3a%2f%2fwww.jumia.co.ke%2fcatalog%2f%3fq%3d#{search}&api_key=#{key}&render_js=1&wait_until=networkidle2")
         @ebay_url = URI("https://api.webscrapingapi.com/v1?url=https%3a%2f%2fwww.ebay.com%2fsch%2fi.html%3f_from%3dR40%26_trksid%3dp2380057.m570.l1313%26_nkw%3d#{search}&api_key=#{key}")
         
-        @search = search
-        @search_id = search_id
+        @product_search = product_search
+        @product_search_id = product_search_id
 
     end
 
     def response(url)
+        byebug
         http = Net::HTTP.new(url.host, url.port)
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERFIY_PEER
 
         request = Net::HTTP::Get.new(url)
         data(http.request(request))
-        byebug
+
     end
 
     def data(resp)
@@ -43,9 +44,9 @@ class Scraper
         price: price,
         price_prediscount: card.xpath(".//span[@class='STRIKETHROUGH']/text()").to_s,
         discount: card.xpath(".//span[@class='BOLD']/text()").to_s,
-        ratings: '',
+        rating: '',
         store: 'ebay',
-        search_id: @search_id,
+        product_search_id: @product_search_id,
         
       }
     end
@@ -63,7 +64,7 @@ class Scraper
                 rating: product.xpath(".//div[@class='stars _s']/text()").to_s,
                 price_prediscount: product.xpath(".//div[@class='old']/text()").to_s,
                 discount: product.xpath(".//div[@class='bdg _dsct _sm']/text()").to_s,
-                search_id: @search_id,
+                product_search_id: @product_search_id,
                 
             }
         end
@@ -79,9 +80,9 @@ class Scraper
             name: product.xpath(".//span[@class='a-size-base-plus a-color-base a-text-normal']/text()").to_s,
             price: price,
             price_before_discount: product.xpath(".//span[@class='a-price a-text-price']/span[1]/text()").to_s,
-            ratings: count_stars(product.xpath(".//i[@class='a-icon a-icon-star-small a-star-small-4-5 aok-align-bottom']/span/text()").to_s),
+            rating: count_stars(product.xpath(".//i[@class='a-icon a-icon-star-small a-star-small-4-5 aok-align-bottom']/span/text()").to_s),
             store: 'amazon',
-            search_id: @search_id,
+            product_search_id: @product_search_id,
             
           }
         end
