@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_15_132416) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_16_120016) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,9 +29,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_15_132416) do
     t.string "image_url"
     t.string "price_prediscount"
     t.string "discount"
-    t.string "coupon_discount"
-    t.datetime "expire_at"
-    t.integer "price_normal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "rating"
