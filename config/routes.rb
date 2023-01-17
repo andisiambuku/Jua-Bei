@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   
   #health check route for render deployment
-  # get '/health_check', to: proc { [200, {}, ['success']] }
+   get '/health_check', to: proc { [200, {}, ['success']] }
 
   #signup endpoint
   post'/signup', to: 'users#create'
