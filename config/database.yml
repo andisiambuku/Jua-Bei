@@ -81,7 +81,7 @@ test:
 #
 production:
   <<: *default
-  database: jua_bei_production
-  username: jua_bei
-  password: <%= ENV["JUA_BEI_DATABASE_PASSWORD"] %>
-  # url: <%= ENV['DATABASE_URL'] %>
+  # database: jua_bei_production
+  # username: jua_bei
+  # password: <%= ENV["JUA_BEI_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
