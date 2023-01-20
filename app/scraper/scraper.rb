@@ -40,7 +40,7 @@ class Scraper
         new= cards.map.with_index do |card, index|
       price = card.xpath(".//span[@class='s-item__price']/text()").to_s
       {
-        image_url: card.xpath(".//img[@class='s-item__image-img']").attr('src').to_s,
+        product_url: card.xpath(".//img[@class='s-item__image-img']").attr('src').to_s,
         name: card.xpath(".//span[@role='heading']/text()").to_s,
         price: price,
         price_prediscount: card.xpath(".//span[@class='STRIKETHROUGH']/text()").to_s,
@@ -62,7 +62,7 @@ class Scraper
                 name: product.xpath(".//div[@class='info']/h3/text()").to_s,
                 price: product.xpath(".//div[@class='prc']/text()").to_s,
                 store: 'Jumia',
-                image_url: product.xpath(".//img[@class='img']").to_s,
+                product_url: product.xpath(".//img[@class='img']").to_s,
                 rating: product.xpath(".//div[@class='stars _s']/text()").to_s,
                 price_prediscount: product.xpath(".//div[@class='old']/text()").to_s,
                 discount: product.xpath(".//div[@class='bdg _dsct _sm']/text()").to_s,
@@ -77,7 +77,7 @@ class Scraper
         new = articles.map.with_index do |product, index|
           price = product.xpath(".//span[@class='a-price']/span/text()").to_s
           {
-            image_url: product.xpath(".//img[@class='s-image']").attr('src').to_s,
+            product_url: product.xpath(".//img[@class='s-image']").attr('src').to_s,
             name: product.xpath(".//span[@class='a-size-base-plus a-color-base a-text-normal']/text()").to_s,
             price: price,
             price_before_discount: product.xpath(".//span[@class='a-price a-text-price']/span[1]/text()").to_s,
