@@ -27,8 +27,11 @@ Clone the project
 ```
 
 ## API Reference
+  POST    /signup => user signup
+  POST    /login => user login
+  GET     /profile => user profile
+  POST    /search => search products
 
-*coming soon*
 
 ## Authors
 
@@ -50,9 +53,9 @@ Fork > Contribute your idea > Create a Pull Request > Improve the project
 
 Here are some related projects
 
-[Jua Bei Front-end](*coming soon*)
+[Jua Bei Front-end](https://github.com/ahmedalli20/Jua-Bei-frontend)
 
 ## Deployment
 
 The link to the deployed backend:
-*comming soon*
+The live link is [here](https://jua-bei.onrender.com/)
