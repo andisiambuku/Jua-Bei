@@ -4,7 +4,7 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :price
       t.string :store
-      t.string :product_url
+      t.string :product_link
       t.string :price_prediscount
       t.string :discount
       t.string :coupon_discount
